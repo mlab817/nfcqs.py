@@ -3,12 +3,17 @@ from models.ltt import run_ols
 from models.arima import run_arima
 
 
+import os
 import numpy as np  # linear algebra
 import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 import csv
 import statsmodels.api as sm
 import json
 import matplotlib.pyplot as plt
+
+
+port = int(os.environ.get('PORT', 5000))
+
 
 app = Flask(__name__)
 
@@ -67,4 +72,4 @@ def prepare_data(data=pd.DataFrame()):
 
 
 if __name__ == '__app__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
